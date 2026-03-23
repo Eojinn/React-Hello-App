@@ -2,15 +2,13 @@ import React from 'react';
 import MyComponent from './components/MyComponent';
 import MyComponentFunc from './components/MyComponentFunc';
 
-//function app(){}
 const App = () => {
   return (
     <>
-      <MyComponent name="리액트" />
-      <MyComponent name={3}/>
-      <hr />
+      <MyComponent  name="리액트" />
+      <MyComponent />
+      <hr/>
       <MyComponentFunc />
-
     </>
   );
 };
