@@ -9,10 +9,11 @@ const MyComponentFunc = ({ name, children }) => {
         username: '',
         message: ''
     });
-
     const [valid, setValid] = useState(false);    
+
     //비구조화 할당
     const { username, message } = inputs;
+    //useRef로 직접 접근할 엘리먼트의 이름 선언
     const myUsername = useRef(null);
 
     //Event Handler 함수 ( ... 펼침연산자 )
@@ -24,7 +25,14 @@ const MyComponentFunc = ({ name, children }) => {
     } //handleChange
 
     const handleEnter = (e) => {
-
+        if(e.keyCode === 13){
+            setValid(true);
+            setInputs({
+                ...inputs,
+                message: ''
+            });
+            myUsername.current.focus();
+        }
     } //handleEnter
 
     return (
@@ -37,10 +45,13 @@ const MyComponentFunc = ({ name, children }) => {
             <button onClick={() => setValue(value - 1)}>감소</button>
             <br />
             <p>상태변수 message = {message}</p>
-            <input name="message" value={message} onChange={handleChange} />
+            <input name="message" value={message} onChange={handleChange}
+                onKeyDown={handleEnter}
+             />
             <p>상태변수 username = {username}</p>
             <input name="username" value={username} onChange={handleChange}
                 className={valid ? 'success':'failure'}
+                ref={myUsername}
              />
 
         </div>
