@@ -50,8 +50,9 @@ class MyComponent extends Component {
     render() {
         //Destructuring Assignment 적용해서 변수 선언
         const { name, age } = this.props;
-        const { value, message, username, isValid } = this.state;
+        const { value, message, username, isValid, messageArr } = this.state;
         const { handleDecrement, handleChange, handleEnter } = this;
+        const messageList = messageArr.map((msg) => (<li>{msg}</li>));
 
         return (
             <div>
@@ -68,6 +69,10 @@ class MyComponent extends Component {
                 <p>상태변수 message = {message}</p>
                 <input name="message" value={message} 
                     onChange={handleChange} onKeyDown={handleEnter} />
+                <br />
+                <ul>
+                    {messageList}
+                </ul>    
                 <p>상태변수 username = {username}</p>
                 <input name="username" value={username} onChange={handleChange}
                     className={isValid ? 'success':'failure'}
