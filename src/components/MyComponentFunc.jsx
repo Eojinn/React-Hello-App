@@ -9,8 +9,8 @@ const MyComponentFunc = ({name,children}) => {
             <h2>함수 형태의 컴포넌트</h2>
             <h3>Hello!! {name}</h3>
             {children}
-            <button>증가</button>
-            <button>감소</button>
+            <button onClick={() => setValue(value + 1)}>증가</button>
+            <button onClick={() => setValue(value - 1)}>감소</button>
         </div>
     );
 };
