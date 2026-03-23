@@ -34,10 +34,12 @@ class MyComponent extends Component {
     }; //handleChange
 
     handleEnter = (e) => {
+        const {messageArr, message} = this.state;
         //Enter key 체크
         if(e.keyCode === 13){
             this.setState({
                 isValid: true,
+                messageArr: [...messageArr, message ],
                 //첫번째 message Input 필드 초기화
                 message: ''
             });
@@ -52,7 +54,7 @@ class MyComponent extends Component {
         const { name, age } = this.props;
         const { value, message, username, isValid, messageArr } = this.state;
         const { handleDecrement, handleChange, handleEnter } = this;
-        const messageList = messageArr.map((msg) => (<li>{msg}</li>));
+        const messageList = messageArr.map((msg,idx) => (<li key={idx}>{msg}</li>));
 
         return (
             <div>
