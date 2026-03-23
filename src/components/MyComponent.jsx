@@ -33,14 +33,22 @@ class MyComponent extends Component {
     }; //handleChange
 
     handleEnter = (e) => {
-
+        if(e.keyCode === 13) {
+            this.setState({
+                isValid: true,
+                //첫번째 message Input 필드 초기화
+                message: ''
+            });
+            //DOM에 직접 접근
+            this.myUsername.focus();
+        }   //e.keyCode === 13
     }//handleEneter
 
     //메서드 오버라이딩
     render() {
         //Destructuring Assignment 적용해서 변수 선언
         const { name, age } = this.props;
-        const { value, message, username } = this.state;
+        const { value, message, username, isValid } = this.state;
         const { handleDecrement, handleChange, handleEnter } = this;
 
         return (
@@ -59,7 +67,10 @@ class MyComponent extends Component {
                 <input name="message" value={message} 
                     onChange={handleChange} onKeyDown={handleEnter} />
                 <p>상태변수 username = {username}</p>
-                <input name="username" value={username} onChange={handleChange} />
+                <input name="username" value={username} onChange={handleChange} 
+                    className={isValid ? 'success' : 'failure'}
+                    ref={(ref) => this.myUsername = ref}
+                />
             </div>
         );
     }
